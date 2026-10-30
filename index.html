@@ -1,0 +1,1284 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Organización del Cuerpo Humano | Ciencias Biológicas en Salud - UCCuyo</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        accent: {
+                            DEFAULT: '#436600',
+                            light: '#f1f6eb',
+                            dark: '#2c4400'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- KaTeX CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+
+    <style>
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: #f7f9f6;
+            color: #1f2937;
+        }
+        .font-mono {
+            font-family: 'JetBrains Mono', monospace;
+        }
+        .tab-btn.active {
+            background-color: #436600;
+            color: #ffffff;
+            box-shadow: 0 4px 6px -1px rgba(67, 102, 0, 0.2), 0 2px 4px -2px rgba(67, 102, 0, 0.2);
+        }
+        .tab-btn.active i {
+            color: #ffffff !important;
+        }
+        .tab-btn:not(.active):hover {
+            background-color: #e2e8f0;
+            color: #0f172a;
+        }
+        .interactive-card {
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .interactive-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -4px rgba(0, 0, 0, 0.05);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 3px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+        .cascade-step.active {
+            border-color: #436600;
+            background-color: #f1f6eb;
+        }
+        .system-pill.active {
+            background-color: #436600;
+            color: white;
+            border-color: #436600;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between custom-scrollbar">
+
+    <!-- Top Header -->
+    <header class="bg-white border-b border-gray-200 sticky top-0 z-40 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex flex-wrap items-center justify-between gap-4">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-lg bg-accent text-white flex items-center justify-center font-bold text-xl shadow-sm tracking-wider">
+                    CB
+                </div>
+                <div>
+                    <h1 class="text-lg font-bold text-gray-900 leading-tight">CIENCIAS BIOLÓGICAS EN SALUD</h1>
+                    <p class="text-xs font-semibold text-gray-500 uppercase tracking-wide">ORGANIZACIÓN DEL CUERPO HUMANO &bull; ENFERMERÍA UCCUYO</p>
+                </div>
+            </div>
+            
+            <div class="flex items-center gap-2">
+                <button onclick="openModal('modal-formulas')" class="inline-flex items-center gap-2 px-3.5 py-2 rounded-lg border border-gray-300 bg-white hover:bg-gray-50 text-gray-700 text-xs font-bold transition shadow-sm">
+                    <i class="fa-solid fa-book-medical text-accent text-sm"></i>
+                    <span>Vademécum Conceptual</span>
+                </button>
+                <button onclick="openModal('modal-tutorial')" class="inline-flex items-center gap-2 px-3.5 py-2 rounded-lg border border-accent bg-accent-light text-accent hover:bg-emerald-100 text-xs font-bold transition shadow-sm">
+                    <i class="fa-solid fa-circle-question text-accent text-sm"></i>
+                    <span>Guía de Uso</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 w-full flex-grow">
+        <div class="flex flex-col lg:flex-row gap-6">
+
+            <!-- Sidebar Navigation -->
+            <nav id="navTabs" class="w-full lg:w-64 flex-shrink-0 flex lg:flex-col gap-1.5 overflow-x-auto lg:overflow-visible pb-2 lg:pb-0 z-10 sticky top-[73px]">
+                <button onclick="switchTab('mod1')" id="tab-btn-mod1" class="tab-btn active w-full flex items-center gap-3 px-3.5 py-2.5 rounded-lg text-xs font-bold transition-all text-left whitespace-nowrap bg-gray-100 text-gray-700">
+                    <i class="fa-solid fa-layer-group text-accent text-sm w-4 text-center"></i>
+                    <span>1. Niveles & Cascada</span>
+                </button>
+                <button onclick="switchTab('mod2')" id="tab-btn-mod2" class="tab-btn w-full flex items-center gap-3 px-3.5 py-2.5 rounded-lg text-xs font-bold transition-all text-left whitespace-nowrap bg-gray-100 text-gray-700">
+                    <i class="fa-solid fa-scale-balanced text-accent text-sm w-4 text-center"></i>
+                    <span>2. Homeostasis Dinámica</span>
+                </button>
+                <button onclick="switchTab('mod3')" id="tab-btn-mod3" class="tab-btn w-full flex items-center gap-3 px-3.5 py-2.5 rounded-lg text-xs font-bold transition-all text-left whitespace-nowrap bg-gray-100 text-gray-700">
+                    <i class="fa-solid fa-heart-pulse text-accent text-sm w-4 text-center"></i>
+                    <span>3. Órgano Multitisular</span>
+                </button>
+                <button onclick="switchTab('mod4')" id="tab-btn-mod4" class="tab-btn w-full flex items-center gap-3 px-3.5 py-2.5 rounded-lg text-xs font-bold transition-all text-left whitespace-nowrap bg-gray-100 text-gray-700">
+                    <i class="fa-solid fa-book-atlas text-accent text-sm w-4 text-center"></i>
+                    <span>4. Atlas de Sistemas (10)</span>
+                </button>
+                <button onclick="switchTab('mod5')" id="tab-btn-mod5" class="tab-btn w-full flex items-center gap-3 px-3.5 py-2.5 rounded-lg text-xs font-bold transition-all text-left whitespace-nowrap bg-gray-100 text-gray-700">
+                    <i class="fa-solid fa-network-wired text-accent text-sm w-4 text-center"></i>
+                    <span>5. Integración Sistémica</span>
+                </button>
+            </nav>
+
+            <!-- Content Area -->
+            <div class="flex-grow min-w-0">
+
+                <!-- MODALIDAD 1: NIVELES Y EFECTO CASCADA -->
+                <div id="module-mod1" class="tab-content block space-y-6">
+                    <div class="bg-white rounded-xl border border-gray-200 p-5 shadow-sm">
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="bg-accent-light text-accent text-xs font-bold px-2 py-0.5 rounded uppercase tracking-wider">Módulo 1</span>
+                            <span class="text-xs text-gray-500 font-mono">Arquitectura Jerárquica</span>
+                        </div>
+                        <h2 class="text-xl font-bold text-gray-900 mb-1">Niveles de Organización Biológica y Efecto Cascada</h2>
+                        <p class="text-xs text-gray-600">Explorá la jerarquía estructural y visualizá cómo una alteración a nivel microscópico se propaga e impacta en todo el organismo.</p>
+                    </div>
+
+                    <!-- Visualizador de Jerarquía -->
+                    <div class="bg-white rounded-xl border border-gray-200 p-5 shadow-sm">
+                        <h3 class="text-sm font-bold text-gray-800 mb-4 flex items-center gap-2">
+                            <i class="fa-solid fa-stairs text-accent"></i> Secuencia Jerárquica Interactiva
+                        </h3>
+                        <div class="grid grid-cols-1 sm:grid-cols-5 gap-3 mb-5">
+                            <div onclick="selectLevel(0)" id="lvl-card-0" class="interactive-card cursor-pointer p-3.5 rounded-lg border-2 border-accent bg-accent-light text-center transition">
+                                <span class="w-7 h-7 mx-auto rounded-full bg-accent text-white font-bold text-xs flex items-center justify-center mb-1">1</span>
+                                <h4 class="text-xs font-bold text-gray-900">Célula</h4>
+                                <p class="text-[10px] text-gray-600">Unidad básica funcional</p>
+                            </div>
+                            <div onclick="selectLevel(1)" id="lvl-card-1" class="interactive-card cursor-pointer p-3.5 rounded-lg border border-gray-200 hover:border-gray-300 bg-white text-center transition">
+                                <span class="w-7 h-7 mx-auto rounded-full bg-gray-200 text-gray-700 font-bold text-xs flex items-center justify-center mb-1">2</span>
+                                <h4 class="text-xs font-bold text-gray-900">Tejido</h4>
+                                <p class="text-[10px] text-gray-600">Células afines especializadas</p>
+                            </div>
+                            <div onclick="selectLevel(2)" id="lvl-card-2" class="interactive-card cursor-pointer p-3.5 rounded-lg border border-gray-200 hover:border-gray-300 bg-white text-center transition">
+                                <span class="w-7 h-7 mx-auto rounded-full bg-gray-200 text-gray-700 font-bold text-xs flex items-center justify-center mb-1">3</span>
+                                <h4 class="text-xs font-bold text-gray-900">Órgano</h4>
+                                <p class="text-[10px] text-gray-600">Cooperación multitisular</p>
+                            </div>
+                            <div onclick="selectLevel(3)" id="lvl-card-3" class="interactive-card cursor-pointer p-3.5 rounded-lg border border-gray-200 hover:border-gray-300 bg-white text-center transition">
+                                <span class="w-7 h-7 mx-auto rounded-full bg-gray-200 text-gray-700 font-bold text-xs flex items-center justify-center mb-1">4</span>
+                                <h4 class="text-xs font-bold text-gray-900">Sist. / Aparato</h4>
+                                <p class="text-[10px] text-gray-600">Órganos coordinados</p>
+                            </div>
+                            <div onclick="selectLevel(4)" id="lvl-card-4" class="interactive-card cursor-pointer p-3.5 rounded-lg border border-gray-200 hover:border-gray-300 bg-white text-center transition">
+                                <span class="w-7 h-7 mx-auto rounded-full bg-gray-200 text-gray-700 font-bold text-xs flex items-center justify-center mb-1">5</span>
+                                <h4 class="text-xs font-bold text-gray-900">Organismo</h4>
+                                <p class="text-[10px] text-gray-600">Integración global total</p>
+                            </div>
+                        </div>
+
+                        <!-- Detalle dinámico del nivel seleccionado -->
+                        <div id="level-detail-box" class="p-4 rounded-lg bg-gray-50 border border-gray-200">
+                            <!-- Inyectado por JS -->
+                        </div>
+                    </div>
+
+                    <!-- Distinción Conceptual: Sistema vs Aparato -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="bg-white rounded-xl border border-gray-200 p-4 shadow-sm">
+                            <div class="flex items-center gap-2 mb-2">
+                                <span class="p-2 rounded-lg bg-emerald-100 text-accent font-bold text-xs"><i class="fa-solid fa-code-branch"></i></span>
+                                <h4 class="text-xs font-bold text-gray-900 uppercase">Concepto de "Sistema"</h4>
+                            </div>
+                            <p class="text-xs text-gray-600 leading-relaxed">
+                                Conjunto de órganos y estructuras anatómicas morfológicamente afines y con un mismo origen embriológico o tejido predominante, que participan en una función determinada.
+                            </p>
+                            <div class="mt-3 p-2.5 rounded bg-gray-50 text-[11px] font-mono text-gray-700 border border-gray-200">
+                                <span class="font-bold text-accent">Ejemplos:</span> Sistema Nervioso, Sistema Óseo, Sistema Endocrino.
+                            </div>
+                        </div>
+                        <div class="bg-white rounded-xl border border-gray-200 p-4 shadow-sm">
+                            <div class="flex items-center gap-2 mb-2">
+                                <span class="p-2 rounded-lg bg-blue-100 text-blue-700 font-bold text-xs"><i class="fa-solid fa-gears"></i></span>
+                                <h4 class="text-xs font-bold text-gray-900 uppercase">Concepto de "Aparato"</h4>
+                            </div>
+                            <p class="text-xs text-gray-600 leading-relaxed">
+                                Conjunto de órganos muy diversos estructuralmente y con diferentes orígenes tisulares, que actúan en estrecha coordinación mecánica o fisiológica para un objetivo común.
+                            </p>
+                            <div class="mt-3 p-2.5 rounded bg-gray-50 text-[11px] font-mono text-gray-700 border border-gray-200">
+                                <span class="font-bold text-blue-700">Ejemplos:</span> Aparato Digestivo, Aparato Respiratorio, Aparato Locomotor.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Simulador del Efecto Cascada -->
+                    <div class="bg-white rounded-xl border border-gray-200 p-5 shadow-sm">
+                        <div class="flex items-center justify-between mb-4">
+                            <div>
+                                <h3 class="text-sm font-bold text-gray-800 flex items-center gap-2">
+                                    <i class="fa-solid fa-tornado text-accent"></i> Simulador de Interdependencia y Efecto Cascada
+                                </h3>
+                                <p class="text-xs text-gray-500">Seleccioná un evento clínico de origen celular para observar la desestabilización ascendente.</p>
+                            </div>
+                            <span class="text-xs font-mono bg-amber-50 text-amber-700 border border-amber-200 px-2 py-1 rounded">Interconexión Tisular</span>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 mb-5">
+                            <button onclick="runCascade(0)" id="casc-btn-0" class="p-3 text-left border rounded-lg hover:border-accent bg-accent-light border-accent text-xs font-semibold text-gray-800 transition">
+                                <i class="fa-solid fa-heart-crack text-accent mr-1.5"></i> Isquemia Miocárdica
+                            </button>
+                            <button onclick="runCascade(1)" id="casc-btn-1" class="p-3 text-left border border-gray-200 rounded-lg hover:border-gray-300 bg-white text-xs font-semibold text-gray-800 transition">
+                                <i class="fa-solid fa-lungs text-blue-600 mr-1.5"></i> Hipoxia Alveolar
+                            </button>
+                            <button onclick="runCascade(2)" id="casc-btn-2" class="p-3 text-left border border-gray-200 rounded-lg hover:border-gray-300 bg-white text-xs font-semibold text-gray-800 transition">
+                                <i class="fa-solid fa-dna text-purple-600 mr-1.5"></i> Lisis de Células Beta
+                            </button>
+                        </div>
+
+                        <!-- Visualizador del camino de la cascada -->
+                        <div id="cascade-steps-container" class="grid grid-cols-1 md:grid-cols-5 gap-3">
+                            <!-- Inyectado por JS -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- MODALIDAD 2: HOMEOSTASIS COMO EQUILIBRIO DINÁMICO -->
+                <div id="module-mod2" class="tab-content hidden space-y-6">
+                    <div class="bg-white rounded-xl border border-gray-200 p-5 shadow-sm">
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="bg-accent-light text-accent text-xs font-bold px-2 py-0.5 rounded uppercase tracking-wider">Módulo 2</span>
+                            <span class="text-xs text-gray-500 font-mono">Regulación Dinámica</span>
+                        </div>
+                        <h2 class="text-xl font-bold text-gray-900 mb-1">Homeostasis: Equilibrio Dinámico y Ajuste Continuo</h2>
+                        <p class="text-xs text-gray-600">La homeostasis no es estatismo ni parálisis: es la capacidad activa de sostener condiciones fisicoquímicas constantes frente a perturbaciones del medio.</p>
+                    </div>
+
+                    <!-- Simulador de Retroalimentación Negativa -->
+                    <div class="bg-white rounded-xl border border-gray-200 p-5 shadow-sm">
+                        <h3 class="text-sm font-bold text-gray-800 mb-4 flex items-center gap-2">
+                            <i class="fa-solid fa-arrows-spin text-accent"></i> Circuito de Retroalimentación Negativa (Feedback)
+                        </h3>
+                        
+                        <!-- Control de Perturbación -->
+                        <div class="bg-gray-50 p-4 rounded-lg border border-gray-200 mb-5">
+                            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-3">
+                                <div>
+                                    <label class="text-xs font-bold text-gray-700">Simular Variable Fisiológica:</label>
+                                    <p class="text-[11px] text-gray-500">Seleccioná un estímulo para desencadenar el arco homeostático reflejo.</p>
+                                </div>
+                                <div class="flex gap-2">
+                                    <button onclick="setHomeoCase('temp')" id="homeo-btn-temp" class="px-3 py-1.5 rounded-lg border border-accent bg-accent text-white text-xs font-semibold">
+                                        Termorregulación
+                                    </button>
+                                    <button onclick="setHomeoCase('gluc')" id="homeo-btn-gluc" class="px-3 py-1.5 rounded-lg border border-gray-300 bg-white text-gray-700 hover:bg-gray-100 text-xs font-semibold">
+                                        Glucemia
+                                    </button>
+                                    <button onclick="setHomeoCase('bp')" id="homeo-btn-bp" class="px-3 py-1.5 rounded-lg border border-gray-300 bg-white text-gray-700 hover:bg-gray-100 text-xs font-semibold">
+                                        Presión Arterial
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Slider de perturbación -->
+                            <div class="space-y-2">
+                                <div class="flex justify-between text-xs font-mono">
+                                    <span class="text-gray-600">Nivel de Desviación del Set Point:</span>
+                                    <span id="homeo-slider-val" class="font-bold text-accent">+2.5 °C (Hipertermia)</span>
+                                </div>
+                                <input type="range" id="homeo-slider" min="-3" max="3" step="1" value="2" class="w-full accent-[#436600]" oninput="updateHomeoSim(this.value)">
+                                <div class="flex justify-between text-[10px] text-gray-400 font-mono">
+                                    <span>-3 Déficit severo</span>
+                                    <span>0 Rango Normal (Homeostático)</span>
+                                    <span>+3 Exceso severo</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Diagrama en 4 Fases -->
+                        <div class="grid grid-cols-1 sm:grid-cols-4 gap-3">
+                            <div class="p-3.5 rounded-lg border border-gray-200 bg-white">
+                                <div class="w-6 h-6 rounded bg-amber-100 text-amber-700 flex items-center justify-center font-bold text-xs mb-2">1</div>
+                                <h4 class="text-xs font-bold text-gray-800">Estímulo & Receptor</h4>
+                                <p id="homeo-receptor" class="text-[11px] text-gray-600 mt-1">Termorreceptores cutáneos y preópticos detectan elevación térmica.</p>
+                            </div>
+                            <div class="p-3.5 rounded-lg border border-gray-200 bg-white">
+                                <div class="w-6 h-6 rounded bg-blue-100 text-blue-700 flex items-center justify-center font-bold text-xs mb-2">2</div>
+                                <h4 class="text-xs font-bold text-gray-800">Vía Aferente & Centro</h4>
+                                <p id="homeo-centro" class="text-[11px] text-gray-600 mt-1">Impulsos aferentes al Hipotálamo anterior que evalúa desviación.</p>
+                            </div>
+                            <div class="p-3.5 rounded-lg border border-gray-200 bg-white">
+                                <div class="w-6 h-6 rounded bg-purple-100 text-purple-700 flex items-center justify-center font-bold text-xs mb-2">3</div>
+                                <h4 class="text-xs font-bold text-gray-800">Efectores Activados</h4>
+                                <p id="homeo-efector" class="text-[11px] text-gray-600 mt-1">Vasodilatación cutánea y estimulación simpática de glándulas sudoríparas.</p>
+                            </div>
+                            <div class="p-3.5 rounded-lg border border-accent bg-accent-light">
+                                <div class="w-6 h-6 rounded bg-accent text-white flex items-center justify-center font-bold text-xs mb-2">4</div>
+                                <h4 class="text-xs font-bold text-gray-800">Respuesta & Retorno</h4>
+                                <p id="homeo-respuesta" class="text-[11px] text-gray-700 mt-1">Disipación de calor por evaporación y convección; retorno a 36.5–37.2 °C.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Cuadro Clave: Límites de Compensación -->
+                    <div class="p-4 rounded-xl bg-amber-50 border border-amber-200 flex items-start gap-3">
+                        <i class="fa-solid fa-triangle-exclamation text-amber-600 text-lg mt-0.5"></i>
+                        <div>
+                            <h4 class="text-xs font-bold text-amber-900 uppercase tracking-wide">Límites Biológicos de la Homeostasis</h4>
+                            <p class="text-xs text-amber-800 mt-0.5 leading-relaxed">
+                                Los mecanismos de compensación no son infinitos. Cuando la magnitud o la duración del estímulo desbordan la reserva funcional homeostática, se ingresa en un estado de <strong>descompensación fisiopatológica</strong> o enfermedad, requiriendo intervención clínica de enfermería y médica.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- MODALIDAD 3: ÓRGANO MULTITISULAR (EL CORAZÓN) -->
+                <div id="module-mod3" class="tab-content hidden space-y-6">
+                    <div class="bg-white rounded-xl border border-gray-200 p-5 shadow-sm">
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="bg-accent-light text-accent text-xs font-bold px-2 py-0.5 rounded uppercase tracking-wider">Módulo 3</span>
+                            <span class="text-xs text-gray-500 font-mono">Composición Multitisular</span>
+                        </div>
+                        <h2 class="text-xl font-bold text-gray-900 mb-1">El Concepto de Órgano: Arquitectura Multitisular</h2>
+                        <p class="text-xs text-gray-600">Un órgano jamás está compuesto por un único tipo celular. Analizamos el caso paradigmático del corazón humano para evidenciar la cooperación de los 4 tejidos básicos.</p>
+                    </div>
+
+                    <!-- Explorador Interactivo del Corazón -->
+                    <div class="bg-white rounded-xl border border-gray-200 p-5 shadow-sm">
+                        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 mb-4">
+                            <h3 class="text-sm font-bold text-gray-800 flex items-center gap-2">
+                                <i class="fa-solid fa-heart-pulse text-accent"></i> Capas Tisulares del Miocardio y Estructura Cardíaca
+                            </h3>
+                            <span class="text-xs font-mono text-gray-500">Hacé clic en cada tejido</span>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-4 gap-3 mb-5">
+                            <div onclick="selectTissue(0)" id="tiss-card-0" class="interactive-card cursor-pointer p-4 rounded-xl border-2 border-accent bg-accent-light transition">
+                                <div class="flex items-center justify-between mb-2">
+                                    <span class="text-xs font-bold text-accent">Tejido Muscular</span>
+                                    <i class="fa-solid fa-bolt text-accent text-sm"></i>
+                                </div>
+                                <h4 class="text-sm font-bold text-gray-900">Miocardio Contráctil</h4>
+                                <p class="text-[11px] text-gray-600 mt-1">Cardiomiocitos estriados unidos por discos intercalares para sincitio mecánico.</p>
+                            </div>
+                            <div onclick="selectTissue(1)" id="tiss-card-1" class="interactive-card cursor-pointer p-4 rounded-xl border border-gray-200 hover:border-gray-300 bg-white transition">
+                                <div class="flex items-center justify-between mb-2">
+                                    <span class="text-xs font-bold text-blue-700">Tejido Epitelial</span>
+                                    <i class="fa-solid fa-shield text-blue-600 text-sm"></i>
+                                </div>
+                                <h4 class="text-sm font-bold text-gray-900">Endocardio & Pericardio</h4>
+                                <p class="text-[11px] text-gray-600 mt-1">Endotelio vascular anti-trombogénico y serosa pericárdica de deslizamiento.</p>
+                            </div>
+                            <div onclick="selectTissue(2)" id="tiss-card-2" class="interactive-card cursor-pointer p-4 rounded-xl border border-gray-200 hover:border-gray-300 bg-white transition">
+                                <div class="flex items-center justify-between mb-2">
+                                    <span class="text-xs font-bold text-amber-700">Tejido Conectivo</span>
+                                    <i class="fa-solid fa-cubes-stacked text-amber-600 text-sm"></i>
+                                </div>
+                                <h4 class="text-sm font-bold text-gray-900">Esqueleto Fibroso</h4>
+                                <p class="text-[11px] text-gray-600 mt-1">Anillos valvulares y tabiques densos que aíslan eléctricamente aurículas de ventrículos.</p>
+                            </div>
+                            <div onclick="selectTissue(3)" id="tiss-card-3" class="interactive-card cursor-pointer p-4 rounded-xl border border-gray-200 hover:border-gray-300 bg-white transition">
+                                <div class="flex items-center justify-between mb-2">
+                                    <span class="text-xs font-bold text-purple-700">Tejido Nervioso</span>
+                                    <i class="fa-solid fa-wave-square text-purple-600 text-sm"></i>
+                                </div>
+                                <h4 class="text-sm font-bold text-gray-900">Sistema Conductor</h4>
+                                <p class="text-[11px] text-gray-600 mt-1">Nodos SA y AV, Haz de His y Purkinje, con regulación simpática y parasimpática.</p>
+                            </div>
+                        </div>
+
+                        <!-- Visualizador Detallado -->
+                        <div id="tissue-detail" class="p-5 rounded-xl bg-gray-50 border border-gray-200">
+                            <!-- Inyectado dinámicamente -->
+                        </div>
+                    </div>
+
+                    <!-- Comparativa: El mito del órgano homogéneo -->
+                    <div class="bg-white rounded-xl border border-gray-200 p-5 shadow-sm">
+                        <h3 class="text-sm font-bold text-gray-800 mb-2">Principio Pedagógico Fundamental</h3>
+                        <p class="text-xs text-gray-600 leading-relaxed">
+                            En enfermería, comprender la naturaleza multitisular permite entender por qué una patología cardíaca puede manifestarse como un trastorno eléctrico (arritmia en tejido nodal), una falla de bombeo (necrosis miocárdica muscular), una valvulopatía (degeneración del conectivo) o una endocarditis infecciosa (colonización bacteriana del epitelio endotelial).
+                        </p>
+                    </div>
+                </div>
+
+                <!-- MODALIDAD 4: ATLAS DE SISTEMAS Y APARATOS -->
+                <div id="module-mod4" class="tab-content hidden space-y-6">
+                    <div class="bg-white rounded-xl border border-gray-200 p-5 shadow-sm">
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="bg-accent-light text-accent text-xs font-bold px-2 py-0.5 rounded uppercase tracking-wider">Módulo 4</span>
+                            <span class="text-xs text-gray-500 font-mono">10 Sistemas y Aparatos</span>
+                        </div>
+                        <h2 class="text-xl font-bold text-gray-900 mb-1">Atlas Anatómico-Funcional de Sistemas Corporales</h2>
+                        <p class="text-xs text-gray-600">Revisión exhaustiva de los 10 componentes del cuerpo humano requeridos en el plan de Ciencias Biológicas de UCCuyo.</p>
+                    </div>
+
+                    <!-- Selector de Sistema en Píldoras -->
+                    <div class="bg-white rounded-xl border border-gray-200 p-5 shadow-sm">
+                        <div class="flex flex-wrap gap-2 mb-5">
+                            <button onclick="selectSystem(0)" id="sys-pill-0" class="system-pill active px-3 py-1.5 rounded-lg border border-accent text-xs font-semibold">1. Tegumentario</button>
+                            <button onclick="selectSystem(1)" id="sys-pill-1" class="system-pill px-3 py-1.5 rounded-lg border border-gray-200 hover:border-gray-300 bg-white text-gray-700 text-xs font-semibold">2. Óseo</button>
+                            <button onclick="selectSystem(2)" id="sys-pill-2" class="system-pill px-3 py-1.5 rounded-lg border border-gray-200 hover:border-gray-300 bg-white text-gray-700 text-xs font-semibold">3. Muscular</button>
+                            <button onclick="selectSystem(3)" id="sys-pill-3" class="system-pill px-3 py-1.5 rounded-lg border border-gray-200 hover:border-gray-300 bg-white text-gray-700 text-xs font-semibold">4. Nervioso</button>
+                            <button onclick="selectSystem(4)" id="sys-pill-4" class="system-pill px-3 py-1.5 rounded-lg border border-gray-200 hover:border-gray-300 bg-white text-gray-700 text-xs font-semibold">5. Endocrino</button>
+                            <button onclick="selectSystem(5)" id="sys-pill-5" class="system-pill px-3 py-1.5 rounded-lg border border-gray-200 hover:border-gray-300 bg-white text-gray-700 text-xs font-semibold">6. Cardiovascular</button>
+                            <button onclick="selectSystem(6)" id="sys-pill-6" class="system-pill px-3 py-1.5 rounded-lg border border-gray-200 hover:border-gray-300 bg-white text-gray-700 text-xs font-semibold">7. Linfático/Inmune</button>
+                            <button onclick="selectSystem(7)" id="sys-pill-7" class="system-pill px-3 py-1.5 rounded-lg border border-gray-200 hover:border-gray-300 bg-white text-gray-700 text-xs font-semibold">8. Respiratorio</button>
+                            <button onclick="selectSystem(8)" id="sys-pill-8" class="system-pill px-3 py-1.5 rounded-lg border border-gray-200 hover:border-gray-300 bg-white text-gray-700 text-xs font-semibold">9. Digestivo</button>
+                            <button onclick="selectSystem(9)" id="sys-pill-9" class="system-pill px-3 py-1.5 rounded-lg border border-gray-200 hover:border-gray-300 bg-white text-gray-700 text-xs font-semibold">10. Urinario</button>
+                        </div>
+
+                        <!-- Ficha de Estudio del Sistema -->
+                        <div id="system-detail-card" class="p-5 rounded-xl bg-gray-50 border border-gray-200">
+                            <!-- Inyectado por JS -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- MODALIDAD 5: SIMULADOR DE INTEGRACIÓN SISTÉMICA -->
+                <div id="module-mod5" class="tab-content hidden space-y-6">
+                    <div class="bg-white rounded-xl border border-gray-200 p-5 shadow-sm">
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="bg-accent-light text-accent text-xs font-bold px-2 py-0.5 rounded uppercase tracking-wider">Módulo 5</span>
+                            <span class="text-xs text-gray-500 font-mono">Fisiología Integrada</span>
+                        </div>
+                        <h2 class="text-xl font-bold text-gray-900 mb-1">Simulador de Integración Sistémica y Cooperación Vital</h2>
+                        <p class="text-xs text-gray-600">Ningún sistema trabaja en solitario. Seleccioná una situación funcional real para evaluar cómo coordinan simultáneamente los distintos sistemas corporales.</p>
+                    </div>
+
+                    <div class="bg-white rounded-xl border border-gray-200 p-5 shadow-sm">
+                        <!-- Botones de escenario -->
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-5">
+                            <button onclick="selectIntegCase(0)" id="integ-btn-0" class="p-3.5 text-left rounded-xl border-2 border-accent bg-accent-light text-xs font-bold text-gray-900 transition">
+                                <div class="flex items-center gap-2 mb-1">
+                                    <i class="fa-solid fa-person-running text-accent text-sm"></i>
+                                    <span>Ejercicio Físico Intenso</span>
+                                </div>
+                                <p class="text-[11px] font-normal text-gray-600">Demanda metabólica muscular y disipación de calor.</p>
+                            </button>
+                            <button onclick="selectIntegCase(1)" id="integ-btn-1" class="p-3.5 text-left rounded-xl border border-gray-200 bg-white hover:border-gray-300 text-xs font-bold text-gray-900 transition">
+                                <div class="flex items-center gap-2 mb-1">
+                                    <i class="fa-solid fa-utensils text-blue-600 text-sm"></i>
+                                    <span>Periodo Postprandial (Digestión)</span>
+                                </div>
+                                <p class="text-[11px] font-normal text-gray-600">Absorción, balance glucémico y perfusión esplácnica.</p>
+                            </button>
+                            <button onclick="selectIntegCase(2)" id="integ-btn-2" class="p-3.5 text-left rounded-xl border border-gray-200 bg-white hover:border-gray-300 text-xs font-bold text-gray-900 transition">
+                                <div class="flex items-center gap-2 mb-1">
+                                    <i class="fa-solid fa-droplet-slash text-amber-600 text-sm"></i>
+                                    <span>Deshidratación / Hemorragia</span>
+                                </div>
+                                <p class="text-[11px] font-normal text-gray-600">Compensación hemodinámica y retención renal de fluidos.</p>
+                            </button>
+                        </div>
+
+                        <!-- Matriz de cooperación sistémica -->
+                        <div id="integ-matrix-container" class="space-y-4">
+                            <!-- Inyectado por JS -->
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-gray-200 py-3 mt-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p class="text-xs text-gray-500 font-medium">Desarrollado por vesalio - Todos los derechos reservados</p>
+        </div>
+    </footer>
+
+    <!-- Toast de Notificaciones -->
+    <div id="toast" class="fixed bottom-5 right-5 z-50 bg-gray-900 text-white px-4 py-2.5 rounded-lg text-xs font-medium shadow-lg transform transition-all duration-300 translate-y-20 opacity-0 flex items-center gap-2">
+        <i class="fa-solid fa-circle-check text-emerald-400"></i>
+        <span id="toast-msg">Mensaje del sistema</span>
+    </div>
+
+    <!-- MODAL: VADEMÉCUM CONCEPTUAL -->
+    <div id="modal-formulas" class="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-white rounded-2xl max-w-2xl w-full max-h-[85vh] flex flex-col shadow-2xl border border-gray-200 animate-fadeIn">
+            <div class="p-4 border-b border-gray-100 flex items-center justify-between">
+                <div class="flex items-center gap-2.5">
+                    <div class="w-8 h-8 rounded-lg bg-accent-light text-accent flex items-center justify-center font-bold text-sm">
+                        <i class="fa-solid fa-book-medical"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-sm font-bold text-gray-900">Vademécum Conceptual de Ciencias Biológicas</h3>
+                        <p class="text-[11px] text-gray-500 font-mono">Fórmulas, Leyes y Definiciones Fisiológicas</p>
+                    </div>
+                </div>
+                <button onclick="closeModal('modal-formulas')" class="text-gray-400 hover:text-gray-600 p-1 rounded-lg">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+            <div class="p-5 overflow-y-auto custom-scrollbar space-y-4 text-xs text-gray-700">
+                <div class="p-3.5 rounded-lg bg-gray-50 border border-gray-200">
+                    <h4 class="font-bold text-accent text-xs mb-1">1. Jerarquía de Complejidad Biológica</h4>
+                    <p class="mb-2">La secuencia obligada de menor a mayor complejidad estructural:</p>
+                    <div class="p-2 bg-white rounded border border-gray-200 font-mono text-center text-xs">
+                        $$\text{Célula} \longrightarrow \text{Tejido} \longrightarrow \text{Órgano} \longrightarrow \text{Aparato/Sistema} \longrightarrow \text{Organismo}$$
+                    </div>
+                </div>
+                <div class="p-3.5 rounded-lg bg-gray-50 border border-gray-200">
+                    <h4 class="font-bold text-accent text-xs mb-1">2. Homeostasis Fisiológica y Circuito de Retroalimentación</h4>
+                    <p class="mb-2">Modelo de retroalimentación negativa para mantener el punto de ajuste (\(Set\,Point\)):</p>
+                    <div class="p-2 bg-white rounded border border-gray-200 font-mono text-center text-xs">
+                        $$\text{Perturbación} \xrightarrow{\text{Sensor}} \text{Señal Aferente} \xrightarrow{\text{Centro Integrador}} \text{Señal Eferente} \xrightarrow{\text{Efector}} \Delta \text{Respuesta Inversa}$$
+                    </div>
+                </div>
+                <div class="p-3.5 rounded-lg bg-gray-50 border border-gray-200">
+                    <h4 class="font-bold text-accent text-xs mb-1">3. Definición Estructural de Órgano</h4>
+                    <p class="mb-1">Estructura anatómica delimitada compuesta por al menos dos (generalmente los cuatro) tejidos primarios: <strong>epitelial</strong>, <strong>conectivo</strong>, <strong>muscular</strong> y <strong>nervioso</strong>, integrados para una función biológica especializada.</p>
+                </div>
+                <div class="p-3.5 rounded-lg bg-gray-50 border border-gray-200">
+                    <h4 class="font-bold text-accent text-xs mb-1">4. Gasto Cardíaco y Perfusión Sistémica</h4>
+                    <p class="mb-2">Fórmula básica de aporte hemodinámico hacia todos los sistemas:</p>
+                    <div class="p-2 bg-white rounded border border-gray-200 font-mono text-center text-xs">
+                        $$GC = FC \times VS \quad \left[\approx 70\,\text{lpm} \times 70\,\text{ml} \approx 5\,\text{L/min}\right]$$
+                    </div>
+                </div>
+            </div>
+            <div class="p-3 border-t border-gray-100 bg-gray-50 rounded-b-2xl flex justify-end">
+                <button onclick="closeModal('modal-formulas')" class="px-4 py-2 bg-accent text-white text-xs font-bold rounded-lg hover:bg-emerald-800 transition">Entendido</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL: GUÍA DE USO -->
+    <div id="modal-tutorial" class="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-white rounded-2xl max-w-3xl w-full max-h-[88vh] flex flex-col shadow-2xl border border-gray-200 animate-fadeIn">
+            <div class="bg-accent p-4 text-white flex items-center justify-between rounded-t-2xl">
+                <div class="flex items-center gap-2.5">
+                    <i class="fa-solid fa-circle-question text-xl"></i>
+                    <div>
+                        <h3 class="text-sm font-bold leading-tight">Guía de Uso del Simulador | Ciencias Biológicas en Salud</h3>
+                        <p class="text-[11px] text-emerald-100 font-mono">Curso de Ingreso a la Licenciatura en Enfermería &bull; FCM UCCuyo</p>
+                    </div>
+                </div>
+                <button onclick="closeModal('modal-tutorial')" class="text-white hover:text-gray-200 p-1 rounded-lg transition">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+            
+            <div class="p-6 overflow-y-auto custom-scrollbar space-y-5 text-xs text-gray-700 leading-relaxed">
+                <!-- Propósito Tecnopedagógico -->
+                <div class="border-b border-gray-100 pb-3">
+                    <h4 class="font-bold text-accent text-sm mb-1 flex items-center gap-2">
+                        <i class="fa-solid fa-bullseye"></i> 1. Propósito Formativo del Simulador
+                    </h4>
+                    <p class="text-gray-600">
+                        Este entorno virtual fue diseñado especialmente para aspirantes a la carrera de <strong>Licenciatura en Enfermería (Facultad de Ciencias Médicas - UCCuyo)</strong>. Su finalidad es articular los fundamentos biológicos con el razonamiento clínico del cuidado: comprender la jerarquía estructural, la autorregulación homeostática, la composición de los órganos y la cooperación sistémica imprescindible para la vida.
+                    </p>
+                </div>
+
+                <!-- Recorrido de Módulos -->
+                <div class="border-b border-gray-100 pb-3">
+                    <h4 class="font-bold text-accent text-sm mb-3 flex items-center gap-2">
+                        <i class="fa-solid fa-layer-group"></i> 2. Módulos Temáticos y Herramientas Interactivas
+                    </h4>
+                    <div class="space-y-3">
+                        <div class="p-3 bg-gray-50 rounded-xl border border-gray-200">
+                            <strong class="text-accent flex items-center gap-1.5 mb-1 text-xs">
+                                <i class="fa-solid fa-stairs"></i> Módulo 1: Niveles de Organización & Efecto Cascada
+                            </strong>
+                            <p class="text-gray-600">
+                                Recorre interactivamente los 5 niveles (Célula &rarr; Tejido &rarr; Órgano &rarr; Sistema/Aparato &rarr; Organismo). Conoce la distinción formal entre <em>Sistema</em> (mismo origen y tejido) y <em>Aparato</em> (órganos diversos coordinados). Pon a prueba el <strong>Simulador de Cascada</strong> para observar cómo una lesión microscópica desestabiliza en cadena al organismo completo.
+                            </p>
+                        </div>
+
+                        <div class="p-3 bg-gray-50 rounded-xl border border-gray-200">
+                            <strong class="text-accent flex items-center gap-1.5 mb-1 text-xs">
+                                <i class="fa-solid fa-arrows-spin"></i> Módulo 2: Homeostasis como Equilibrio Dinámico
+                            </strong>
+                            <p class="text-gray-600">
+                                Experimenta con el arco reflejo homeostático frente a cambios térmicos, glucémicos o de tensión arterial. Utiliza el control deslizante para perturbar las variables y visualizar la respuesta coordinada de receptores, centros integradores y efectores, entendiendo los límites de compensación biológica.
+                            </p>
+                        </div>
+
+                        <div class="p-3 bg-gray-50 rounded-xl border border-gray-200">
+                            <strong class="text-accent flex items-center gap-1.5 mb-1 text-xs">
+                                <i class="fa-solid fa-heart-pulse"></i> Módulo 3: Órgano Multitisular (El Corazón Humano)
+                            </strong>
+                            <p class="text-gray-600">
+                                Desmitifica la idea del corazón como simple masa muscular. Selecciona y explora en detalle sus 4 tejidos cooperantes: <em>muscular</em> (miocardio contráctil), <em>epitelial</em> (endocardio y pericardio), <em>conectivo</em> (esqueleto fibroso valvular) y <em>nervioso</em> (sistema de conducción intrínseco), con su directa correlación en el cuidado del paciente.
+                            </p>
+                        </div>
+
+                        <div class="p-3 bg-gray-50 rounded-xl border border-gray-200">
+                            <strong class="text-accent flex items-center gap-1.5 mb-1 text-xs">
+                                <i class="fa-solid fa-book-atlas"></i> Módulo 4: Atlas de los 10 Sistemas y Aparatos
+                            </strong>
+                            <p class="text-gray-600">
+                                Consulta la ficha anatómica y fisiológica completa de cada uno de los 10 sistemas corporales exigidos en el programa académico, enfatizando las alertas clínicas y la aplicación directa en la valoración de enfermería en cabecera del paciente.
+                            </p>
+                        </div>
+
+                        <div class="p-3 bg-gray-50 rounded-xl border border-gray-200">
+                            <strong class="text-accent flex items-center gap-1.5 mb-1 text-xs">
+                                <i class="fa-solid fa-network-wired"></i> Módulo 5: Integración Sistémica y Cooperación Vital
+                            </strong>
+                            <p class="text-gray-600">
+                                Comprueba que ningún sistema trabaja aislado. Simula 3 escenarios fisiológicos reales (ejercicio físico intenso, periodo postprandial y respuesta a deshidratación/hemorragia) para observar cómo coordinan en simultáneo los diferentes aparatos para preservar la estabilidad vital.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Características del Entorno -->
+                <div>
+                    <h4 class="font-bold text-accent text-sm mb-2 flex items-center gap-2">
+                        <i class="fa-solid fa-compass"></i> 3. Metodología de Aprendizaje
+                    </h4>
+                    <ul class="list-disc pl-5 space-y-1 text-gray-600">
+                        <li><strong>Aprendizaje no punitivo:</strong> El simulador prioriza la exploración autónoma e iterativa; no posee penalizaciones ni cronómetros para favorecer la reflexión clínica.</li>
+                        <li><strong>Vademécum Conceptual:</strong> Podés abrir el botón superior en cualquier momento para repasar la secuencia jerárquica, fórmulas fisiológicas y el circuito de retroalimentación en notación científica KaTeX.</li>
+                        <li><strong>Diseño Adaptativo:</strong> Compatible con celulares, tablets y computadoras para el estudio en cualquier entorno.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="p-3 border-t border-gray-100 bg-gray-50 rounded-b-2xl flex justify-end">
+                <button onclick="closeModal('modal-tutorial')" class="px-4 py-2 bg-accent text-white text-xs font-bold rounded-lg hover:bg-emerald-800 transition">Comenzar Exploración</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript Integrado -->
+    <script>
+        // DATOS MÓDULO 1: NIVELES JERÁRQUICOS
+        const levelsData = [
+            {
+                name: "Nivel Celular",
+                sub: "Unidad estructural y funcional básica de la vida",
+                desc: "La célula es la entidad viva elemental capaz de reproducirse, realizar metabolismo y responder a estímulos. Ningún componente subcelular aislado tiene vida por sí mismo.",
+                detail: "En el cuerpo humano encontramos más de 200 tipos celulares especializados (ej. eritrocitos, cardiomiocitos, neuronas, fibroblastos).",
+                relevance: "Base del cuidado: un desequilibrio electrolítico o hipoxia a este nivel compromete toda la estructura tisular superior."
+            },
+            {
+                name: "Nivel Tisular (Tejidos)",
+                sub: "Agrupación de células semejantes y su matriz extracelular",
+                desc: "Los tejidos son conjuntos coordinados de células semejantes morfológicamente que trabajan mancomunadamente para desarrollar una función específica.",
+                detail: "Existen únicamente 4 tipos básicos de tejidos en todo el organismo: Epitelial (cobertura y secreción), Conectivo (sostén e intercambio), Muscular (contractilidad) y Nervioso (comunicación bioeléctrica).",
+                relevance: "En cicatrización o lesiones por presión, la valoración del tejido viable es un rol crítico de enfermería."
+            },
+            {
+                name: "Nivel Orgánico (Órganos)",
+                sub: "Estructuras delimitadas formadas por múltiples tejidos",
+                desc: "Un órgano es una unidad anatómica definida por la unión organizada de diferentes tipos de tejidos que cooperan para realizar funciones complejas.",
+                detail: "Ejemplos: Corazón, estómago, riñón, cerebro, piel (el órgano más extenso).",
+                relevance: "La falla de un órgano altera los parámetros vitales directos monitorizados en la cabecera del paciente."
+            },
+            {
+                name: "Nivel de Sistemas y Aparatos",
+                sub: "Conjuntos de órganos con cooperación funcional coordinada",
+                desc: "Agrupación de órganos interdependientes para cumplir macrofunciones vitales (circulación, intercambio de gases, digestión, excreción, regulación hormonal).",
+                detail: "Distinción clave: El Sistema posee órganos morfológicamente semejantes; el Aparato reúne órganos diversos con un fin común.",
+                relevance: "El examen físico por enfermería se estructura por sistemas para una valoración clínica integral y ordenada."
+            },
+            {
+                name: "Nivel de Organismo Completo",
+                sub: "Integración funcional absoluta y vida autónoma",
+                desc: "El ser humano como totalidad bio-psico-social. Es el nivel superior donde todos los sistemas operan en perfecta sinergia homeostática.",
+                detail: "La persona hospitalizada es un sujeto integral de derecho, no una colección fragmentada de patologías.",
+                relevance: "Misión primordial del enfermero/a: velar por la seguridad, confort e integridad del paciente en su totalidad."
+            }
+        ];
+
+        // DATOS MÓDULO 1: CASCADA BIOLÓGICA
+        const cascadeScenarios = [
+            {
+                title: "Isquemia Miocárdica",
+                steps: [
+                    { level: "Célula", label: "Cardiomiocito", text: "Falta de O2 detiene fosforilación oxidativa. Disminuye ATP y se altera la bomba Na+/K+." },
+                    { level: "Tejido", label: "Miocardio ventricular", text: "Acidosis láctica local y pérdida de contractilidad en la pared miocárdica." },
+                    { level: "Órgano", label: "Corazón", text: "Fracción de eyección cae abruptamente; insuficiencia de bombeo ventricular." },
+                    { level: "Sistema", label: "Cardiovascular / Sistémico", text: "Hipotensión severa, shock cardiogénico y perfusión insuficiente a órganos vitales." },
+                    { level: "Organismo", label: "Paciente", text: "Lipotimia, disnea angustiosa, dolor precordial y riesgo inminente de colapso vital." }
+                ]
+            },
+            {
+                title: "Hipoxia Alveolar (Broncoaspiración)",
+                steps: [
+                    { level: "Célula", label: "Neumocitos I y II", text: "Obstrucción de difusión; incapacidad para renovar gradiente de O2 alveolar." },
+                    { level: "Tejido", label: "Parénquima pulmonar", text: "Atelectasia focal y exudado alveolar con pérdida de elasticidad." },
+                    { level: "Órgano", label: "Pulmón", text: "Alteración masiva de la relación ventilación/perfusión (V/Q)." },
+                    { level: "Sistema", label: "Aparato Respiratorio", text: "Insuficiencia respiratoria aguda, hipercapnia y acidosis respiratoria sistémica." },
+                    { level: "Organismo", label: "Paciente", text: "Cianosis peribucal, taquipnea refleja, confusión y necesidad urgente de soporte vital." }
+                ]
+            },
+            {
+                title: "Lisis Autoinmune de Células Beta (Cetoacidosis)",
+                steps: [
+                    { level: "Célula", label: "Células Beta Pancreáticas", text: "Destrucción autoinmune selectiva; cese absoluto de síntesis de insulina." },
+                    { level: "Tejido", label: "Islotes de Langerhans", text: "Insulitis inflamatoria crónica y colapso de la secreción endocrina insular." },
+                    { level: "Órgano", label: "Páncreas", text: "Incapacidad endocrina total de regular la glucemia plasmática." },
+                    { level: "Sistema", label: "Endocrino / Metabólico", text: "Hiperglucemia descontrolada, lipólisis masiva y producción de cetoácidos en sangre." },
+                    { level: "Organismo", label: "Paciente", text: "Deshidratación severa por diuresis osmótica, respiración de Kussmaul y coma cetoacidótico." }
+                ]
+            }
+        ];
+
+        // DATOS MÓDULO 2: HOMEOSTASIS
+        const homeoCases = {
+            temp: {
+                name: "Termorregulación",
+                unit: "°C",
+                setPoint: "37.0 °C",
+                getFeedback: function(val) {
+                    if (val > 0) {
+                        return {
+                            valText: `+${(val * 1.2).toFixed(1)} °C (Hipertermia)`,
+                            rec: "Termorreceptores cutáneos y núcleo preóptico hipotalámico captan aumento de temperatura central.",
+                            cen: "Centro Termorregulador del Hipotálamo anterior activa mecanismos de disipación de calor.",
+                            efe: "Glándulas sudoríparas (diaforesis) y músculo liso arteriolar cutáneo (vasodilatación periférica).",
+                            res: "Aumento de evaporación y calor radiante. La temperatura desciende hacia el valor basal seguro."
+                        };
+                    } else if (val < 0) {
+                        return {
+                            valText: `${(val * 1.2).toFixed(1)} °C (Hipotermia)`,
+                            rec: "Termorreceptores registran descenso térmico crítico de sangre circulante.",
+                            cen: "Hipotálamo posterior inhibe pérdida calórica y activa termogénesis.",
+                            efe: "Músculo esquelético (escalofríos involuntarios), vasoconstricción periférica y piloerección.",
+                            res: "Conservación de calor en tronco y órganos vitales, elevando la temperatura a 37 °C."
+                        };
+                    } else {
+                        return {
+                            valText: "0.0 °C (Eutermia Normal)",
+                            rec: "Tasa de disparo basal normal de los receptores térmicos.",
+                            cen: "Hipotálamo mantiene tono vasomotor basal equilibrado.",
+                            efe: "Efectores en actividad basal estándar sin sobrecarga energética.",
+                            res: "Equilibrio homeostático térmico perfecto (36.5 °C - 37.2 °C)."
+                        };
+                    }
+                }
+            },
+            gluc: {
+                name: "Glucemia",
+                unit: "mg/dL",
+                setPoint: "90 mg/dL",
+                getFeedback: function(val) {
+                    if (val > 0) {
+                        return {
+                            valText: `+${val * 40} mg/dL (Hiperglucemia)`,
+                            rec: "Sensores de glucosa y transportadores GLUT2 en células beta del páncreas.",
+                            cen: "Células beta de los Islotes Pancreáticos integran la señal y liberan Insulina.",
+                            efe: "Hepatocitos, adipocitos y músculo estriado incrementan captación por GLUT4 y glucogenogénesis.",
+                            res: "Glucosa plasmática desciende progresivamente hacia el rango normal (70-100 mg/dL)."
+                        };
+                    } else if (val < 0) {
+                        return {
+                            valText: `${val * 25} mg/dL (Hipoglucemia)`,
+                            rec: "Células alfa pancreáticas y sensores hipotalámicos detectan descenso glucémico.",
+                            cen: "Páncreas endocrino responde secretando Glucagón e impulsos simpáticos.",
+                            efe: "Hepatocitos activan glucogenólisis y gluconeogénesis rápida.",
+                            res: "Liberación hepática neta de glucosa a la sangre para evitar daño neurogénico."
+                        };
+                    } else {
+                        return {
+                            valText: "Normoglucemia (90 mg/dL)",
+                            rec: "Captación basal celular en balance con aporte portal.",
+                            cen: "Cociente insulina/glucagón basal estable.",
+                            efe: "Metabolismo tisular estándar y aporte continuo al encéfalo.",
+                            res: "Homeostasis metabólica preservada."
+                        };
+                    }
+                }
+            },
+            bp: {
+                name: "Presión Arterial",
+                unit: "mmHg",
+                setPoint: "120/80 mmHg",
+                getFeedback: function(val) {
+                    if (val > 0) {
+                        return {
+                            valText: `+${val * 20} mmHg (Hipertensión)`,
+                            rec: "Barorreceptores en el seno carotídeo y cayado aórtico registran estiramiento parietal.",
+                            cen: "Centro cardiovascular del Bulbo Raquídeo estimula tono parasimpático vagal.",
+                            efe: "Disminución de FC y contractilidad en nódulo SA; vasodilatación periférica.",
+                            res: "Gasto cardíaco y resistencia periférica disminuyen, normalizando la presión arterial."
+                        };
+                    } else if (val < 0) {
+                        return {
+                            valText: `${val * 20} mmHg (Hipotensión)`,
+                            rec: "Disminución de frecuencia de descarga de barorreceptores por pérdida de tensión parietal.",
+                            cen: "Bulbo raquídeo suprime tono vagal y activa fuertemente el sistema simpático.",
+                            efe: "Taquicardia refleja, inotropismo positivo y vasoconstricción arteriolar sistémica.",
+                            res: "Incremento inmediato del gasto cardíaco y retorno de la perfusión encefálica."
+                        };
+                    } else {
+                        return {
+                            valText: "Normotensión (120/80 mmHg)",
+                            rec: "Descarga barorreceptora continua y armónica.",
+                            cen: "Equilibrio entre inervación autónoma simpática y vagal.",
+                            efe: "Tono arteriolar fisiológico y gasto cardíaco basal adecuado.",
+                            res: "Perfusión tisular uniforme y estable."
+                        };
+                    }
+                }
+            }
+        };
+
+        let currentHomeoCase = 'temp';
+
+        // DATOS MÓDULO 3: TEJIDOS DEL CORAZÓN
+        const tissuesData = [
+            {
+                name: "Tejido Muscular Cardíaco (Miocardio)",
+                color: "text-accent",
+                bg: "bg-accent-light",
+                caract: "Cardiomiocitos cilíndricos y ramificados con estriaciones transversales, mononucleados centrales y discos intercalares con uniones gap (nexos).",
+                funcion: "Genera la fuerza contráctil rítmica e involuntaria para propulsar el volumen sistólico hacia la arteria aorta y el tronco pulmonar.",
+                clinica: "La pérdida de flujo coronario produce isquemia tisular rápida, necrosis por infarto y caída del gasto cardíaco."
+            },
+            {
+                name: "Tejido Epitelial (Endocardio y Pericardio Seroso)",
+                color: "text-blue-700",
+                bg: "bg-blue-50",
+                caract: "Endotelio simple plano apoyado sobre lámina basal en la cara interna (endocardio) y mesotelio secretor de líquido seroso en la externa (epicardio/pericardio).",
+                funcion: "El endocardio provee una superficie ultra-lisa no trombogénica para el flujo sanguíneo; el pericardio seroso lubrica el movimiento dentro del mediastino.",
+                clinica: "La lesión endotelial facilita la formación de trombos murales o vegetaciones bacterianas (endocarditis)."
+            },
+            {
+                name: "Tejido Conectivo (Esqueleto Fibroso Cardíaco)",
+                color: "text-amber-700",
+                bg: "bg-amber-50",
+                caract: "Colágeno denso organizado en anillos valvulares y trígonos fibrosos de alta resistencia mecánica.",
+                funcion: "Anclaje de las 4 válvulas cardíacas (mitral, tricúspide, aórtica, pulmonar) e insulación eléctrica que impide el paso desordenado de impulsos de aurículas a ventrículos.",
+                clinica: "Degeneración fibrosa senil puede provocar estenosis valvular o prolapsos que sobrecargan de volumen o presión al músculo."
+            },
+            {
+                name: "Tejido Nervioso y Conductor Intrínseco",
+                color: "text-purple-700",
+                bg: "bg-purple-50",
+                caract: "Células musculares especializadas modificadas (nódulos sinoauricular y auriculoventricular, Haz de His y fibras de Purkinje) más inervación autonómica.",
+                funcion: "Autoexcitación (automatismo cardíaco) y conducción sincrónica rápida del potencial de acción para coordinar sístole auricular previa a la ventricular.",
+                clinica: "Isquemias o bloqueos en este tejido desencadenan arritmias graves, bradicardias extremas o fibrilación letal."
+            }
+        ];
+
+        // DATOS MÓDULO 4: ATLAS DE 10 SISTEMAS
+        const systemsAtlas = [
+            {
+                num: 1,
+                name: "Sistema Tegumentario",
+                icon: "fa-hand-dots",
+                organs: "Piel (Epidermis, Dermis, Hipodermis), pelos, uñas, glándulas sudoríparas y sebáceas.",
+                functions: "Barrera protectora frente a patógenos e injurias físicas, síntesis de vitamina D, recepción sensorial táctil/térmica y regulación de temperatura por sudoración y perfusión cutánea.",
+                nursing: "Valoración del estado de la piel para prevenir úlceras por presión (UPP), detección precoz de ictericia, palidez o cianosis."
+            },
+            {
+                num: 2,
+                name: "Sistema Óseo / Esquelético",
+                icon: "fa-bone",
+                organs: "206 huesos, cartílagos costales y articulares, ligamentos periarticulares.",
+                functions: "Sostén estructural del cuerpo, palanca mecánica para la locomoción, protección de órganos vitales (cráneo, caja torácica) y hematopoyesis en médula ósea roja.",
+                nursing: "Movilización con técnica ergonómica segura, prevención de caídas en adultos mayores con osteoporosis."
+            },
+            {
+                num: 3,
+                name: "Sistema Muscular",
+                icon: "fa-dumbbell",
+                organs: "Más de 600 músculos esqueléticos voluntarios y sus tendones de inserción.",
+                functions: "Producción de movimiento corporal, estabilidad articular, mantenimiento del tono y postura erecta, y termogénesis metabólica por contracción.",
+                nursing: "Detección de atrofia por desuso o inmovilización prolongada; asistencia en deambulación precoz."
+            },
+            {
+                num: 4,
+                name: "Sistema Nervioso",
+                icon: "fa-brain",
+                organs: "Encéfalo, médula espinal, nervios periféricos craneales y raquídeos, receptores sensoriales.",
+                functions: "Regulación ultra-rápida de actividades corporales mediante potenciales de acción bioeléctricos, percepción consciente e inconsciente y funciones cognitivas superiores.",
+                nursing: "Valoración de la escala de coma de Glasgow, reflejos pupilares y nivel de conciencia en la guardia."
+            },
+            {
+                num: 5,
+                name: "Sistema Endocrino",
+                icon: "fa-flask-vial",
+                organs: "Hipófisis, tiroides, paratiroides, suprarrenales, páncreas endocrino, gónadas, timo.",
+                functions: "Regulación a medio y largo plazo del metabolismo, crecimiento celular y balance electrolítico mediante la secreción de hormonas directamente al torrente sanguíneo.",
+                nursing: "Administración estricta y horaria de insulinas, corticoides o levotiroxina; monitoreo de glucemia capilar."
+            },
+            {
+                num: 6,
+                name: "Sistema Cardiovascular",
+                icon: "fa-heart",
+                organs: "Corazón (bomba de cuatro cámaras), red vascular arterial, capilar y venosa, sangre.",
+                functions: "Transporte de oxígeno, nutrientes, hormonas y desechos; mediación en el equilibrio ácido-base, la termorregulación y la respuesta inmunológica circulante.",
+                nursing: "Control de signos vitales (presión arterial, pulso periférico, saturometría) y balance hidroelectrolítico."
+            },
+            {
+                num: 7,
+                name: "Sistema Linfático e Inmunitario",
+                icon: "fa-shield-halved",
+                organs: "Linfa, vasos linfáticos, ganglios linfáticos, bazo, timo, amígdalas y médula ósea.",
+                functions: "Drenaje y retorno del exceso de líquido intersticial a la sangre venosa, transporte de lípidos absorbidos en el intestino y defensa celular y humoral contra microorganismos invasores.",
+                nursing: "Técnicas asépticas obligadas para evitar bacteriemias y control de linfedemas o adenopatías inflamatorias."
+            },
+            {
+                num: 8,
+                name: "Aparato Respiratorio",
+                icon: "fa-lungs",
+                organs: "Vías aéreas superiores e inferiores (faringe, laringe, tráquea, bronquios) y alvéolos pulmonares.",
+                functions: "Hematosis (intercambio de O2 y CO2 entre el aire inspirado y la sangre capilar), fonación y regulación inmediata del pH plasmático por eliminación de ácido carbónico.",
+                nursing: "Monitoreo de frecuencia respiratoria, patrón ventilatorio, aspiración segura de secreciones y oxigenoterapia."
+            },
+            {
+                num: 9,
+                name: "Aparato Digestivo",
+                icon: "fa-bowl-food",
+                organs: "Tracto gastrointestinal (boca, esófago, estómago, intestinos) y glándulas anexas (hígado, vesícula, páncreas exocrino).",
+                functions: "Degradación mecánica y química de alimentos, absorción activa de nutrientes y agua, síntesis de proteínas plasmáticas en el hígado y eliminación de residuos sólidos fecales.",
+                nursing: "Manejo de sondas nasogástricas, tolerancia enteral, control de náuseas y registro de catarsis del paciente."
+            },
+            {
+                num: 10,
+                name: "Aparato Urinario",
+                icon: "fa-filter",
+                organs: "Riñones (nefronas filtrantes), uréteres, vejiga urinaria de almacenamiento y uretra.",
+                functions: "Filtración plasmática y eliminación de desechos nitrogenados (urea, creatinina), regulación del volumen circulante, osmolaridad, equilibrio ácido-base y síntesis de eritropoyetina.",
+                nursing: "Cuantificación exacta de la diuresis horaria, manejo de sondas vesicales con técnica cerrada y prevención de infecciones urinarias."
+            }
+        ];
+
+        // DATOS MÓDULO 5: INTEGRACIÓN SISTÉMICA
+        const integrationCases = [
+            {
+                title: "Ejercicio Físico Intenso y Prolongado",
+                context: "El paciente/deportista corre 5 km a ritmo intenso. Se produce una elevación drástica de la tasa metabólica celular muscular.",
+                systems: [
+                    { name: "Sistema Muscular", icon: "fa-dumbbell", role: "Aumenta el consumo de glucosa y O2 hasta 20 veces; genera calor y ácido láctico por glucólisis." },
+                    { name: "Sistema Cardiovascular", icon: "fa-heart", role: "Incrementa gasto cardíaco (taquicardia + volumen sistólico); vasoconstricción visceral y vasodilatación masiva muscular." },
+                    { name: "Aparato Respiratorio", icon: "fa-lungs", role: "Taquipnea e hiperpnea para captar más O2 y barrer el CO2 acumulado, previniendo acidosis metabólica severa." },
+                    { name: "Sistema Tegumentario", icon: "fa-hand-dots", role: "Diaforesis profusa y vasodilatación dérmica para disipar calor metabólico y evitar golpe de calor." },
+                    { name: "Aparato Urinario", icon: "fa-filter", role: "El flujo plasmático renal disminuye transitoriamente; retiene agua y sodio mediante secreción de aldosterona y ADH." }
+                ],
+                conclusion: "Ningún sistema puede sostener el ejercicio solo: los músculos colapsarían en segundos sin el soporte cardiovascular, respiratorio y térmico integrado."
+            },
+            {
+                title: "Periodo Postprandial (Ingesta de Alimentos)",
+                context: "El organismo recibe y procesa una comida balanceada rica en carbohidratos, lípidos y proteínas.",
+                systems: [
+                    { name: "Aparato Digestivo", icon: "fa-bowl-food", role: "Motilidad peristáltica activada, secreción de ácido clorhídrico y enzimas pancreáticas para hidrolizar macronutrientes." },
+                    { name: "Sistema Endocrino", icon: "fa-flask-vial", role: "Células beta pancreáticas detectan glucosa portal y liberan Insulina para dirigir el ingreso celular de nutrientes." },
+                    { name: "Sistema Nervioso Parasimpático", icon: "fa-brain", role: "Estimulación del nervio vago ('reposo y digestión'), aumentando el flujo esplácnico y disminuyendo la frecuencia cardíaca." },
+                    { name: "Sistema Cardiovascular", icon: "fa-heart", role: "Redistribuye el flujo sanguíneo hacia el lecho mesentérico para maximizar la absorción de nutrientes." },
+                    { name: "Aparato Urinario", icon: "fa-filter", role: "Ajusta la excreción de agua y solutos para compensar los cambios en la osmolaridad postprandial." }
+                ],
+                conclusion: "La digestión requiere la sincronización precisa de señales nerviosas autónomas, hormonas pancreáticas y hemodinámica esplácnica."
+            },
+            {
+                title: "Deshidratación Aguda / Hemorragia",
+                context: "Pérdida súbita o progresiva de volumen intravascular (vómitos severos, diarrea o sangrado quirúrgico).",
+                systems: [
+                    { name: "Sistema Cardiovascular", icon: "fa-heart", role: "Caída del retorno venoso; taquicardia refleja y vasoconstricción periférica para priorizar perfusión cerebral y coronaria." },
+                    { name: "Aparato Urinario", icon: "fa-filter", role: "Oliguria defensiva: reabsorción tubular máxima de agua y Na+ mediada por el eje Renina-Angiotensina-Aldosterona." },
+                    { name: "Sistema Endocrino", icon: "fa-flask-vial", role: "La neurohipófisis secreta Hormona Antidiurética (ADH/Vasopresina) estimulada por osmorreceptores hipotalámicos." },
+                    { name: "Sistema Nervioso", icon: "fa-brain", role: "Gatilla el centro de la sed para motivar la búsqueda de ingesta de líquidos; genera ansiedad e hiperalerta." },
+                    { name: "Sistema Tegumentario", icon: "fa-hand-dots", role: "Piel pálida, fría y con sequedad mucosa por constricción arteriolar para desviar sangre al lecho central." }
+                ],
+                conclusion: "La respuesta al shock es un esfuerzo concertado multiorgánico para sostener la presión arterial mínima indispensable para la vida celular."
+            }
+        ];
+
+        // GESTIÓN DE PESTAÑAS (TABS)
+        function switchTab(tabId) {
+            // Actualizar botones del sidebar
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            const activeBtn = document.getElementById('tab-btn-' + tabId);
+            if (activeBtn) activeBtn.classList.add('active');
+
+            // Actualizar contenedores
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.add('hidden');
+                content.classList.remove('block');
+            });
+            const activeContent = document.getElementById('module-' + tabId);
+            if (activeContent) {
+                activeContent.classList.remove('hidden');
+                activeContent.classList.add('block');
+            }
+
+            // Reprocesar KaTeX si está disponible
+            if (window.renderMathInElement) {
+                renderMathInElement(document.body);
+            }
+        }
+
+        // CONTROLADORES MÓDULO 1
+        function selectLevel(idx) {
+            for (let i = 0; i < 5; i++) {
+                const card = document.getElementById(`lvl-card-${i}`);
+                if (!card) continue;
+                if (i === idx) {
+                    card.className = "interactive-card cursor-pointer p-3.5 rounded-lg border-2 border-accent bg-accent-light text-center transition";
+                    card.querySelector('span').className = "w-7 h-7 mx-auto rounded-full bg-accent text-white font-bold text-xs flex items-center justify-center mb-1";
+                } else {
+                    card.className = "interactive-card cursor-pointer p-3.5 rounded-lg border border-gray-200 hover:border-gray-300 bg-white text-center transition";
+                    card.querySelector('span').className = "w-7 h-7 mx-auto rounded-full bg-gray-200 text-gray-700 font-bold text-xs flex items-center justify-center mb-1";
+                }
+            }
+
+            const data = levelsData[idx];
+            const box = document.getElementById('level-detail-box');
+            box.innerHTML = `
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-gray-200 pb-2 mb-3">
+                    <div>
+                        <span class="text-[10px] font-mono text-accent font-bold uppercase">Nivel Jerárquico ${idx + 1} de 5</span>
+                        <h4 class="text-sm font-bold text-gray-900">${data.name}</h4>
+                    </div>
+                    <span class="text-xs text-gray-500 font-medium">${data.sub}</span>
+                </div>
+                <p class="text-xs text-gray-700 leading-relaxed mb-3">${data.desc}</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
+                    <div class="p-3 bg-white rounded border border-gray-200">
+                        <strong class="text-gray-900 block mb-1"><i class="fa-solid fa-microscope text-accent mr-1"></i> Detalles Estructurales:</strong>
+                        <span class="text-gray-600">${data.detail}</span>
+                    </div>
+                    <div class="p-3 bg-white rounded border border-gray-200">
+                        <strong class="text-gray-900 block mb-1"><i class="fa-solid fa-user-nurse text-blue-600 mr-1"></i> Importancia en Enfermería:</strong>
+                        <span class="text-gray-600">${data.relevance}</span>
+                    </div>
+                </div>
+            `;
+        }
+
+        function runCascade(scenarioIdx) {
+            for (let i = 0; i < 3; i++) {
+                const btn = document.getElementById(`casc-btn-${i}`);
+                if (!btn) continue;
+                if (i === scenarioIdx) {
+                    btn.className = "p-3 text-left border rounded-lg hover:border-accent bg-accent-light border-accent text-xs font-semibold text-gray-800 transition";
+                } else {
+                    btn.className = "p-3 text-left border border-gray-200 rounded-lg hover:border-gray-300 bg-white text-xs font-semibold text-gray-800 transition";
+                }
+            }
+
+            const sc = cascadeScenarios[scenarioIdx];
+            const container = document.getElementById('cascade-steps-container');
+            container.innerHTML = sc.steps.map((st, i) => `
+                <div class="p-3 rounded-lg border ${i === 0 ? 'border-accent bg-accent-light' : 'border-gray-200 bg-white'} relative">
+                    <div class="flex items-center justify-between mb-1.5">
+                        <span class="text-[10px] font-mono font-bold ${i === 0 ? 'text-accent' : 'text-gray-500'}">Paso ${i+1}: ${st.level}</span>
+                        ${i < 4 ? '<i class="fa-solid fa-arrow-right text-[10px] text-gray-400 hidden md:block"></i>' : '<i class="fa-solid fa-flag-checkered text-[10px] text-red-600"></i>'}
+                    </div>
+                    <h5 class="text-xs font-bold text-gray-900 mb-1">${st.label}</h5>
+                    <p class="text-[11px] text-gray-600 leading-snug">${st.text}</p>
+                </div>
+            `).join('');
+
+            showToast(`Cascada activada: ${sc.title}`);
+        }
+
+        // CONTROLADORES MÓDULO 2 (HOMEOSTASIS)
+        function setHomeoCase(caseKey) {
+            currentHomeoCase = caseKey;
+            ['temp', 'gluc', 'bp'].forEach(k => {
+                const b = document.getElementById(`homeo-btn-${k}`);
+                if (k === caseKey) {
+                    b.className = "px-3 py-1.5 rounded-lg border border-accent bg-accent text-white text-xs font-semibold";
+                } else {
+                    b.className = "px-3 py-1.5 rounded-lg border border-gray-300 bg-white text-gray-700 hover:bg-gray-100 text-xs font-semibold";
+                }
+            });
+            const slider = document.getElementById('homeo-slider');
+            slider.value = 2;
+            updateHomeoSim(2);
+        }
+
+        function updateHomeoSim(val) {
+            const v = parseInt(val, 10);
+            const c = homeoCases[currentHomeoCase];
+            const fb = c.getFeedback(v);
+
+            document.getElementById('homeo-slider-val').textContent = fb.valText;
+            document.getElementById('homeo-receptor').textContent = fb.rec;
+            document.getElementById('homeo-centro').textContent = fb.cen;
+            document.getElementById('homeo-efector').textContent = fb.efe;
+            document.getElementById('homeo-respuesta').textContent = fb.res;
+        }
+
+        // CONTROLADORES MÓDULO 3 (ÓRGANO)
+        function selectTissue(idx) {
+            for (let i = 0; i < 4; i++) {
+                const c = document.getElementById(`tiss-card-${i}`);
+                if (!c) continue;
+                if (i === idx) {
+                    c.className = "interactive-card cursor-pointer p-4 rounded-xl border-2 border-accent bg-accent-light transition";
+                } else {
+                    c.className = "interactive-card cursor-pointer p-4 rounded-xl border border-gray-200 hover:border-gray-300 bg-white transition";
+                }
+            }
+
+            const t = tissuesData[idx];
+            const box = document.getElementById('tissue-detail');
+            box.innerHTML = `
+                <div class="flex items-center gap-2 mb-2">
+                    <span class="text-xs font-bold uppercase tracking-wider ${t.color}">Componente Tisular ${idx + 1}</span>
+                    <span class="text-xs text-gray-400 font-mono">&bull; Arquitectura Cardíaca</span>
+                </div>
+                <h4 class="text-base font-bold text-gray-900 mb-2">${t.name}</h4>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs mt-3">
+                    <div class="p-3 bg-white rounded-lg border border-gray-200">
+                        <strong class="text-gray-900 block mb-1"><i class="fa-solid fa-microscope ${t.color} mr-1"></i> Características Celulares:</strong>
+                        <p class="text-gray-600 leading-relaxed">${t.caract}</p>
+                    </div>
+                    <div class="p-3 bg-white rounded-lg border border-gray-200">
+                        <strong class="text-gray-900 block mb-1"><i class="fa-solid fa-gears ${t.color} mr-1"></i> Función Primordial:</strong>
+                        <p class="text-gray-600 leading-relaxed">${t.funcion}</p>
+                    </div>
+                    <div class="p-3 bg-white rounded-lg border border-gray-200">
+                        <strong class="text-gray-900 block mb-1"><i class="fa-solid fa-user-nurse ${t.color} mr-1"></i> Correlación en Salud:</strong>
+                        <p class="text-gray-600 leading-relaxed">${t.clinica}</p>
+                    </div>
+                </div>
+            `;
+        }
+
+        // CONTROLADORES MÓDULO 4 (ATLAS)
+        function selectSystem(idx) {
+            for (let i = 0; i < 10; i++) {
+                const p = document.getElementById(`sys-pill-${i}`);
+                if (!p) continue;
+                if (i === idx) {
+                    p.className = "system-pill active px-3 py-1.5 rounded-lg border border-accent text-xs font-semibold";
+                } else {
+                    p.className = "system-pill px-3 py-1.5 rounded-lg border border-gray-200 hover:border-gray-300 bg-white text-gray-700 text-xs font-semibold";
+                }
+            }
+
+            const sys = systemsAtlas[idx];
+            const box = document.getElementById('system-detail-card');
+            box.innerHTML = `
+                <div class="flex items-center gap-3 border-b border-gray-200 pb-3 mb-4">
+                    <div class="w-10 h-10 rounded-xl bg-accent text-white flex items-center justify-center font-bold text-lg shadow-sm">
+                        <i class="fa-solid ${sys.icon}"></i>
+                    </div>
+                    <div>
+                        <span class="text-[10px] font-mono text-accent font-bold uppercase">Componente ${sys.num} de 10</span>
+                        <h4 class="text-base font-bold text-gray-900">${sys.name}</h4>
+                    </div>
+                </div>
+                <div class="space-y-3 text-xs">
+                    <div class="p-3 bg-white rounded-lg border border-gray-200">
+                        <strong class="text-gray-900 block mb-1"><i class="fa-solid fa-sitemap text-accent mr-1"></i> Órganos y Estructuras Clave:</strong>
+                        <p class="text-gray-700">${sys.organs}</p>
+                    </div>
+                    <div class="p-3 bg-white rounded-lg border border-gray-200">
+                        <strong class="text-gray-900 block mb-1"><i class="fa-solid fa-bolt text-amber-600 mr-1"></i> Funciones Primarias de Supervivencia:</strong>
+                        <p class="text-gray-700">${sys.functions}</p>
+                    </div>
+                    <div class="p-3 bg-white rounded-lg border border-gray-200">
+                        <strong class="text-gray-900 block mb-1"><i class="fa-solid fa-user-nurse text-blue-600 mr-1"></i> Aplicación Práctica en Cuidados de Enfermería:</strong>
+                        <p class="text-gray-700">${sys.nursing}</p>
+                    </div>
+                </div>
+            `;
+        }
+
+        // CONTROLADORES MÓDULO 5 (INTEGRACIÓN)
+        function selectIntegCase(idx) {
+            for (let i = 0; i < 3; i++) {
+                const b = document.getElementById(`integ-btn-${i}`);
+                if (!b) continue;
+                if (i === idx) {
+                    b.className = "p-3.5 text-left rounded-xl border-2 border-accent bg-accent-light text-xs font-bold text-gray-900 transition";
+                } else {
+                    b.className = "p-3.5 text-left rounded-xl border border-gray-200 bg-white hover:border-gray-300 text-xs font-bold text-gray-900 transition";
+                }
+            }
+
+            const c = integrationCases[idx];
+            const container = document.getElementById('integ-matrix-container');
+            container.innerHTML = `
+                <div class="p-4 rounded-xl bg-gray-50 border border-gray-200 mb-4">
+                    <h4 class="text-xs font-bold text-gray-900 uppercase tracking-wide mb-1">Contexto Clínico-Fisiológico:</h4>
+                    <p class="text-xs text-gray-700">${c.context}</p>
+                </div>
+                <div class="space-y-2.5">
+                    ${c.systems.map(s => `
+                        <div class="p-3.5 bg-white rounded-lg border border-gray-200 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                            <div class="flex items-center gap-2.5 sm:w-1/3">
+                                <span class="w-7 h-7 rounded-lg bg-accent-light text-accent flex items-center justify-center text-xs">
+                                    <i class="fa-solid ${s.icon}"></i>
+                                </span>
+                                <h5 class="text-xs font-bold text-gray-900">${s.name}</h5>
+                            </div>
+                            <p class="text-xs text-gray-600 sm:w-2/3 leading-relaxed">${s.role}</p>
+                        </div>
+                    `).join('')}
+                </div>
+                <div class="p-4 rounded-xl bg-accent-light border border-accent mt-4">
+                    <div class="flex items-center gap-2 mb-1">
+                        <i class="fa-solid fa-circle-nodes text-accent"></i>
+                        <h5 class="text-xs font-bold text-accent uppercase">Conclusión de Integración Sistémica:</h5>
+                    </div>
+                    <p class="text-xs text-gray-800 leading-relaxed">${c.conclusion}</p>
+                </div>
+            `;
+        }
+
+        // MODALES
+        function openModal(id) {
+            const m = document.getElementById(id);
+            if (m) {
+                m.classList.remove('hidden');
+                if (window.renderMathInElement) {
+                    try {
+                        renderMathInElement(m, {
+                            delimiters: [
+                                {left: '$$', right: '$$', display: true},
+                                {left: '$', right: '$', display: false},
+                                {left: '\\(', right: '\\)', display: false},
+                                {left: '\\[', right: '\\]', display: true}
+                            ],
+                            throwOnError: false
+                        });
+                    } catch (e) {
+                        console.warn('KaTeX render warning:', e);
+                    }
+                }
+            }
+        }
+
+        function closeModal(id) {
+            const m = document.getElementById(id);
+            if (m) m.classList.add('hidden');
+        }
+
+        // TOAST
+        function showToast(msg) {
+            const t = document.getElementById('toast');
+            const m = document.getElementById('toast-msg');
+            m.textContent = msg;
+            t.classList.remove('translate-y-20', 'opacity-0');
+            setTimeout(() => {
+                t.classList.add('translate-y-20', 'opacity-0');
+            }, 3000);
+        }
+
+        // INICIALIZACIÓN
+        document.addEventListener('DOMContentLoaded', () => {
+            selectLevel(0);
+            runCascade(0);
+            updateHomeoSim(2);
+            selectTissue(0);
+            selectSystem(0);
+            selectIntegCase(0);
+        });
+    </script>
+</body>
+</html>
